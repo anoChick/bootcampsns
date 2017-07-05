@@ -14,7 +14,7 @@ class FeedsController < ApplicationController
           img.resize_to_fit!(500, 500)
           file_name = "#{SecureRandom.uuid}.jpg"
           img.write "#{Rails.root}/public/images/#{file_name}"
-          @feed = @current_user.feed.create feed_type: 'image', exif: exif, image_file_name: file_name
+          @feed = @current_user.feed.create feed_type: 'image', exif: ERB::Util.html_escape(exif), image_file_name: file_name
           render json: {errors: @feed.errors.full_messages}, status: :bad_request and return if @feed.errors.any?
         rescue
           render json: {errors: ['画像フォーマットが正しくありません']}, status: :bad_request and return
