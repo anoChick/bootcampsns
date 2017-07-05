@@ -16,7 +16,7 @@ Bundler.require(*Rails.groups)
 
 module Sns
   class Application < Rails::Application
-    config.action_controller.permit_all_parameters = true # エラー抑止のため
+    config.action_controller.permit_all_parameters = false
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
